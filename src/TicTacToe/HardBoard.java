@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 public class HardBoard extends GeneralBoard {
 
     public void hardMode() {
+        scorevalue = 0;
+        scoreButtons.setText("0");
 
         newGame();
 

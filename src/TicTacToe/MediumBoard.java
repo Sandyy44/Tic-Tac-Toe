@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 public class MediumBoard extends GeneralBoard {
 
     public void mediumMode() {
+        scorevalue = 0;
+        scoreButtons.setText("0");
 
         newGame();
 

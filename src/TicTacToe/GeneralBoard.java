@@ -107,6 +107,10 @@ public abstract class GeneralBoard extends StackPane {
     Media LosingSound = new Media(new File("SoundsFiles/Game Over.mp3").toURI().toString());
     MediaPlayer mediaPlayerLoses = new MediaPlayer(LosingSound);
 
+    Buttons scoreButtons = new Buttons("0");
+    Label score = new Label("Score: ");
+    int scorevalue = 0;
+
     GeneralBoard() {
 
         //setting up the properties of the nodes
@@ -124,6 +128,11 @@ public abstract class GeneralBoard extends StackPane {
         symbolBtn.setFocusTraversable(false);
         symbolBtn.setStyle("-fx-text-fill:#20282C ;-fx-background-color: #8CB76B,linear-gradient(#8CB76B 50%, #B2DF90 100%),radial-gradient(center 50% -40%, radius 200%, #B2DF90 45%, #8CB76B 50%);-fx-background-radius:5;-fx-border-color:#5D9036 ;-fx-border-width:2px;-fx-border-radius: 5;");
         symbolBtn.setFont(Font.font("Monaco", FontWeight.BOLD, 20));
+
+        scoreButtons.setPrefSize(30, 30);
+        scoreButtons.setFocusTraversable(false);
+        scoreButtons.setStyle("-fx-text-fill:#20282C ;-fx-background-color: #8CB76B,linear-gradient(#8CB76B 50%, #B2DF90 100%),radial-gradient(center 50% -40%, radius 200%, #B2DF90 45%, #8CB76B 50%);-fx-background-radius:5;-fx-border-color:#5D9036 ;-fx-border-width:2px;-fx-border-radius: 5;");
+        scoreButtons.setFont(Font.font("Monaco", FontWeight.BOLD, 20));
 
         //to set each button position of the array in the grid
         int column = 0;
@@ -149,7 +158,15 @@ public abstract class GeneralBoard extends StackPane {
         }
 
         //adding all the nodes to this StackPane class & setting the position for each node in it
-        getChildren().addAll(background, playerturn, Btns, gridBtns, symbolBtn);
+        getChildren().addAll(background, playerturn, Btns, gridBtns, symbolBtn, score, scoreButtons);
+        scoreButtons.setAlignment(Pos.TOP_LEFT);
+        scoreButtons.setTranslateX(-220);
+        scoreButtons.setTranslateY(-240);
+
+        score.setAlignment(Pos.TOP_LEFT);
+        score.setTranslateX(-220);
+        score.setTranslateY(-280);
+
         symbolBtn.setAlignment(Pos.TOP_RIGHT);
         symbolBtn.setTranslateX(220);
         symbolBtn.setTranslateY(-265);
@@ -272,6 +289,8 @@ public abstract class GeneralBoard extends StackPane {
                 button[b].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[c].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 mediaPlayerWins.play();
+                scorevalue++;
+                scoreButtons.setText(String.valueOf(scorevalue));
             } else if (symbolWon == 2) {
                 button[a].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[b].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
@@ -286,6 +305,9 @@ public abstract class GeneralBoard extends StackPane {
                 button[b].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[c].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 mediaPlayerWins.play();
+                scorevalue++;
+
+                scoreButtons.setText(String.valueOf(scorevalue));
             } else if (symbolWon == 1) {
                 button[a].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[b].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
@@ -305,11 +327,15 @@ public abstract class GeneralBoard extends StackPane {
                 button[b].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[c].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 mediaPlayerWins.play();
+                scorevalue++;
+                scoreButtons.setText(String.valueOf(scorevalue));
+
             } else if (symbolWon == 2) {
                 button[a].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[b].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[c].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
                 mediaPlayerLoses.play();
+
             }
         }
 
@@ -319,6 +345,9 @@ public abstract class GeneralBoard extends StackPane {
                 button[b].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[c].setStyle("-fx-background-color: #009900,linear-gradient(#009900 50%, #3ABC27 100%),radial-gradient(center 50% -40%, radius 200%, #3ABC27 45%, #009900 50%) ;-fx-background-radius:10;-fx-border-color: #0D410D;-fx-border-width:3px;-fx-border-radius: 10;");
                 mediaPlayerWins.play();
+
+                scorevalue++;
+                scoreButtons.setText(String.valueOf(scorevalue));
             } else if (symbolWon == 1) {
                 button[a].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
                 button[b].setStyle("-fx-background-color: #FF4242,linear-gradient(#FF4242 50%, #FD5E5E 100%),radial-gradient(center 50% -40%, radius 200%, #FD5E5E 45%, #FF4242 50%) ;-fx-background-radius:10;-fx-border-color: #D42626;-fx-border-width:3px;-fx-border-radius: 10;");
@@ -353,7 +382,11 @@ public abstract class GeneralBoard extends StackPane {
             button[i].setDisable(false);
             button[i].setText("");
             button[i].setStyle("-fx-text-fill:#473C33;-fx-background-color: #F3CA82,linear-gradient(#F3CA82 50%, #F6BC59 100%),radial-gradient(center 50% -40%, radius 200%, #F3CA82 45%, #F6BC59 50%) ;-fx-background-radius:10;-fx-border-color: #BD8421;-fx-border-width:3px;-fx-border-radius: 10;");
+
         }
+        scorevalue = 0;
+        scoreButtons.setText("0");
+
     }
 
     //to save the user symbol choice 

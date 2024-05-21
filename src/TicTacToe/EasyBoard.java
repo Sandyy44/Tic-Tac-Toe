@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 public class EasyBoard extends GeneralBoard {
 
     public void easyMode() {
+        scorevalue = 0;
+        scoreButtons.setText("0");
 
         newGame();
 

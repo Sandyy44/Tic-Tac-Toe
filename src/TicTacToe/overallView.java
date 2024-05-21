@@ -220,6 +220,11 @@ public class overallView {
 
         settingsStartPane.back.setOnAction(e -> stage.getScene().setRoot(startPaneBase));
 
+        hardnessPane.BackButton.setOnAction(e -> stage.getScene().setRoot(startPaneBase));
+        symbolEasy.BackButton.setOnAction(e -> stage.getScene().setRoot(hardnessPaneBase));
+
+        symbolMedium.BackButton.setOnAction(e -> stage.getScene().setRoot(hardnessPaneBase));
+        symbolHard.BackButton.setOnAction(e -> stage.getScene().setRoot(hardnessPaneBase));
     }
 
 }
